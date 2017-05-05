@@ -12,7 +12,8 @@ As other graphical models like the Bayesian network the undirected graphical net
 
 When the edges of a undirected graph represent random variables, it is called a undirected graphical model or also Markov network or Markov random field.\cite{kindermann1980markov} The edges hereby represent a probabilistic dependecy between the linked random variables.
 
-Markov property \cite{markov1957theory}
+To be considered as a Markov network (or Markov random field) the random variables need to statisfy the following Markov properties with respect to the graph, as described in cite{markov1957theory}:
+
 
 Figure \ref{fig:basic} shows a simple example of a undirected graphical model (markov network) with a set of four random variables $V=\{A,B,C,D\}$ and four probabilistic dependencies (edges): $E=\{(A,B),(B,C),(A,C),(C,D)\}$. In this example, the nodes could be humans and the edges a probabilistic presentation of how like it is, that two persons are relatives. Based on such a model the probability of how likely it is that all four persons are relatives could be calculated. To do so it is nessesarry to parameterize the model, so it is helpful for calculating probabilities over the model.
 
