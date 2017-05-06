@@ -29,9 +29,16 @@ TODO: when the joint probability is strictly positive than it is a Gibbs random 
 
 \subsection{Parameterization}
 
-In order to calculate propabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assing a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure. 
+In order to calculate probabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assign a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure.
 
-With this method all factors over two random variables, which are directly linked via an edge, can be expressed. Based on those factors we can calculate factors over larger subsets or the whole model. This is achieved by multipliing factors, which share at least one node, as for example $\phi(A,C)$ and $\phi(C,D)$ as shown in figure \ref{fig:basic}. When calculating the factor product, the probability of every parameter of the first factor is multiplied with the probability of the refering parameter of the second factor with respect to the shared random variable, such that for every different combination a parameter of the superior factor exists. If $A$, $C$ and $D$ for instance are binary random variables, the factor over those three nodes would have $2^3=8$ parameters, as shown in figure \ref{fig:parammult}.
+\begin{figure}[htpb]
+  \centering
+  	\includegraphics[scale=0.3]{img/param.pdf} 
+  \caption{Factor of two binary linked random variables}
+  \label{fig:param}
+\end{figure}
+
+With this method all factors over two random variables, which are directly linked via an edge, can be expressed. Based on those factors we can calculate factors over larger subsets or the whole model. This is achieved by multiplying factors, which share at least one node, as for example $\phi(A,C)$ and $\phi(C,D)$ as shown in figure \ref{fig:basic}. When calculating the factor product, the probability of every parameter of the first factor is multiplied with the probability of the referring parameter of the second factor with respect to the shared random variable, such that for every different combination a parameter of the superior factor exists. If $A$, $C$ and $D$ for instance are binary random variables, the factor over those three nodes would have $2^3=8$ parameters, as shown in figure \ref{fig:parammult}.
 
 
 
