@@ -4,7 +4,7 @@ Before deeper concepts, algorithms and application of undirected graphical model
 
 As other graphical models like the Bayesian network the undirected graphical network consists of a set of nodes $V$ (also called vertices) and a set of edges between the nodes $E$, which is a set of tuples of exactly two nodes. The key difference to a Bayesian network is that those edges are not directed, in the meaning that the dependency between two nodes do not have a direction, as described in \cite{koller2009probabilistic}.
 
-When the edges of a undirected graph represent random variables, it is called a undirected graphical model or also Markov network or Markov random field.\cite{kindermann1980markov} The edges hereby represent a probabilistic dependency between the linked random variables.
+When the edges of a undirected graph represent random variables, it is called a undirected graphical model or also Markov network or Markov random field. The edges hereby represent a probabilistic dependency between the linked random variables, as \cite{kindermann1980markov} describes.
 
 To be considered as a Markov network (or Markov random field) the random variables need to satisfy the following Markov properties with respect to the graph, as described in \cite{markov1957theory}:
 
@@ -24,9 +24,6 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
   \label{fig:basic}
 \end{figure}
 
-TODO: when the joint probability is strictly positive than it is a Gibbs random field cause it can be represented by the Gibbs measure
-
-
 \subsection{Parameterization}
 
 In order to calculate probabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assign a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure.
@@ -40,6 +37,11 @@ In order to calculate probabilities on an undirected graphical model, the model 
 
 With this method all factors over two random variables, which are directly linked via an edge, can be expressed. Based on those factors we can calculate factors over larger subsets or the whole model. This is achieved by multiplying factors, which share at least one node, as for example $\phi(A,C)$ and $\phi(C,D)$ as shown in figure \ref{fig:basic}. When calculating the factor product, the probability of every parameter of the first factor is multiplied with the probability of the referring parameter of the second factor with respect to the shared random variable, such that for every different combination a parameter of the superior factor exists. If $A$, $C$ and $D$ for instance are binary random variables, the factor over those three nodes would have $2^3=8$ parameters, as shown in figure \ref{fig:parammult}.
 
+\begin{figure}[htpb]
+  \centering
+  	\includegraphics[scale=0.4]{img/parammult.pdf} 
+  \caption{Factor multiplication of three binary random variables}
+  \label{fig:parammult}
+\end{figure}
 
-
-TODO: How does the method work? What are the appealing properties?
+Thus to compute a full joint distribution every single factor involved in this distribution needs to be taken into account. If the joint probability of the Markov network is strictly positive than this distribution is also considered a Gibbs distribution, as described in \cite{kindermann1980markov}.
