@@ -6,7 +6,8 @@
   year      = {2009},
   author    = {Koller, Daphne and Friedman, Nir},
   file      = {:..\\Sources\\core_probabilistic_graphical_models-koller-and-friedman.pdf:PDF},
-  keywords  = {lecture book},
+  groups    = {methodology},
+  keywords  = {lecture book, rank5},
 }
 
 @Book{kindermann1980markov,
@@ -14,6 +15,8 @@
   publisher = {American Mathematical Society},
   year      = {1980},
   author    = {Kindermann, Ross and Snell, Laurie},
+  groups    = {methodology},
+  keywords  = {rank3},
   url       = {http://www.cmap.polytechnique.fr/~rama/ehess/mrfbook.pdf},
 }
 
@@ -22,6 +25,7 @@
   publisher = {Springer Science \& Business Media},
   year      = {2009},
   author    = {Li, Stan Z},
+  groups    = {application, computer vision},
   url       = {https://books.google.de/books?hl=de&lr=&id=rDsObhDkCIAC&oi=fnd&pg=PR9&dq=Markov+Random+Field+Modeling+in+Image+Analysis&ots=xillgTwPIR&sig=IKyyijIq9f020eHiOMnQt8ljAzU#v=onepage&q=Markov%20Random%20Field%20Modeling%20in%20Image%20Analysis&f=false},
 }
 
@@ -32,6 +36,29 @@
   year     = {2004},
   volume   = {16},
   pages    = {25},
+  abstract = {In typical classification tasks, we seek a function which assigns a label to a single
+object. Kernel-based approaches, such as support vector machines (SVMs),
+which maximize the margin of confidence of the classifier, are the method of
+choice for many such tasks. Their popularity stems both from the ability to
+use high-dimensional feature spaces, and from their strong theoretical guarantees.
+However, many real-world tasks involve sequential, spatial, or structured
+data, where multiple labels must be assigned. Existing kernel-based methods ignore
+structure in the problem, assigning labels independently to each object, losing
+much useful information. Conversely, probabilistic graphical models, such
+as Markov networks, can represent correlations between labels, by exploiting
+problem structure, but cannot handle high-dimensional feature spaces, and lack
+strong theoretical generalization guarantees. In this paper, we present a new
+framework that combines the advantages of both approaches: Maximum margin
+Markov (M3
+) networks incorporate both kernels, which efficiently deal with
+high-dimensional features, and the ability to capture correlations in structured
+data. We present an efficient algorithm for learning M3
+networks based on a
+compact quadratic program formulation. We provide a new theoretical bound
+for generalization in structured domains. Experiments on the task of handwritten
+character recognition and collective hypertext classification demonstrate very
+significant gains over previous approaches.},
+  groups   = {application, others},
   keywords = {outlook, combination, SVM},
   url      = {https://papers.nips.cc/paper/2397-max-margin-markov-networks.pdf},
 }
@@ -41,6 +68,7 @@
   publisher = {Morgan Kaufmann},
   year      = {2014},
   author    = {Pearl, Judea},
+  groups    = {methodology},
   keywords  = {Chapter 3},
   url       = {https://books.google.de/books?hl=de&lr=&id=mn2jBQAAQBAJ&oi=fnd&pg=PP1&dq=Probabilistic+Reasoning+in+Intelligent+Systems&ots=4qJS0F2Ga3&sig=Dj5D33g_HHgKnt4e_voLckEz5yg#v=onepage&q=Probabilistic%20Reasoning%20in%20Intelligent%20Systems&f=false},
 }
@@ -50,6 +78,40 @@
   title   = {Theory of algorithms},
   journal = {Journal of Symbolic Logic},
   year    = {1957},
+  groups  = {methodology},
+}
+
+@Article{freeman2000learning,
+  author    = {Freeman, William T and Pasztor, Egon C and Carmichael, Owen T},
+  title     = {Learning low-level vision},
+  journal   = {International journal of computer vision},
+  year      = {2000},
+  volume    = {40},
+  number    = {1},
+  pages     = {25--47},
+  groups    = {application, computer vision},
+  publisher = {Springer},
+  url       = {http://www.merl.com/publications/docs/TR2000-05.pdf},
+}
+
+@Article{freeman2002example,
+  author    = {Freeman, William T and Jones, Thouis R and Pasztor, Egon C},
+  title     = {Example-based super-resolution},
+  journal   = {IEEE Computer graphics and Applications},
+  year      = {2002},
+  volume    = {22},
+  number    = {2},
+  pages     = {56--65},
+  publisher = {IEEE},
+  url       = {http://people.csail.mit.edu/billf/publications/Example-Based_Super_Resolution.pdf},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
+
+@Comment{jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:application\;0\;;
+2 ExplicitGroup:others\;0\;;
+2 ExplicitGroup:computer vision\;0\;;
+1 ExplicitGroup:methodology\;0\;;
+}

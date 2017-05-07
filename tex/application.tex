@@ -3,3 +3,7 @@ This is the application part.
 TODO: name a bunch of areas of application and then refer more in depth on those below:
 TODO: speech recognition
 TODO: image recognition / processing / computer vision \cite{li2009markov}
+
+One application of markov networks in the field of image processing is the computation of a super-resolution of an image. This means that a low-resolution image can be converted into an high-resoultion image, for instance by using an already trained example database, as described in \cite{freeman2002example}. As Freeman describes, first an training dataset is build by mapping a high resolution patch (for example 16 pxiels x 16 pixels) of any image to a low resolution counter patch (for example 8 pixels x 8 pixels) in order to use the reversed mapping later to find a high-resolution patch for a low-resolution input patch. Thus after training, there should be in the best case multiple high-resolution patches for one low-resolution patch.
+
+In the next step an low-resolution input image is fragmented into multiple patches, which are represented by nodes in the Markov network. Furthermore the target high-resolution patches are also nodes which are at this point linked to the input nodes. To examine which high-resolution patch fits best, they overlap with their neighbor by one pixel. Thus, the best value combination of target patches needs to be minimized in terms of the error of the overlapping pixels or maximized in the terms of probability, how "likely" the resulting image fits to the input image.
