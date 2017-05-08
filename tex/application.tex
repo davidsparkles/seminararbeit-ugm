@@ -6,7 +6,11 @@ TODO: image recognition / processing / computer vision \cite{li2009markov}
 
 \subsection{Information retrieval: Term Dependencies}
 
-Refer to \cite{metzler2005markov}
+Donald Metzler and W. Bruce Croft describe in \cite{metzler2005markov} a model for term dependencies using a Markov network. Afterwards this model can be used for information retrieval.
+
+As in this article indicated every term of the query is considered as a random variable and are linked to the document which shall be ranked. In addition to this Metzler and Croft distinguish into three different dependecy assumptions: full independecy, sequential independency and full dependency among the terms. Sequential dependency means that only ancient terms of the query are dependent like in a bigram model.
+
+The first phase of this method is training the markov network, such that the potentials of the dependendies are determined.
 
 
 
