@@ -10,8 +10,16 @@ Donald Metzler and W. Bruce Croft describe in \cite{metzler2005markov} a model f
 
 As in this article indicated every term of the query is considered as a random variable and are linked to the document which shall be ranked. In addition to this Metzler and Croft distinguish into three different dependecy assumptions: full independecy, sequential independency and full dependency among the terms. Sequential dependency means that only ancient terms of the query are dependent like in a bigram model.
 
-The first phase of this method is training the markov network, such that the potentials of the dependendies are determined.
+In order to apply this method for a query following steps must be taken:
+\begin{enumerate}
+\item represent the query term dependencies by a Markov network
+\item define potential functions for the cliques of the network
+\item compute the rank of each document $P_\Lambda (D|Q)$ and sort them in a descending order
+\end{enumerate}
 
+Hereby D is a document, Q a query and $P_\Lambda$ a function which applies a weighted potential function to each clique of the Markov model. The potential functions can be considered as compatibility functions, as described in \ref{methodology}, and are restriced to be strictly positive by \cite{metzler20015markov}. Further if full independency is assummed every term would form a smallest clique with the document under investigation and will lead to one contribution to the rank of the document with repect to the query. If elsewise full dependency is assummed, there are also cliques with all query terms and the document taken into account.
+
+After experimenal testing on different data sets Metzler and Croft show the efficiency of this undirected graphical model approach in comparisson with other models like the bigram model. When comparing the three different independence assumptions the sequential dependecy assumption leads in terms of effectivity in contrast to the full independece assupmtion and also leads in terms of efficientcy and ad hoc requests in comparison with the full dependency assumption.
 
 
 \subsection{Image processing Example: super-resolution}
