@@ -8,7 +8,7 @@ TODO: Get some more information from \url{http:\\www.slideplayer.com/slide/60125
 
 Donald Metzler and W. Bruce Croft describe in \cite{metzler2005markov} a model for term dependencies using a Markov network. Afterwards this model can be used for information retrieval.
 
-As in this article indicated every term of the query is considered as a random variable and are linked to the document which shall be ranked. In addition to this Metzler and Croft distinguish into three different dependecy assumptions: full independecy, sequential independency and full dependency among the terms. Sequential dependency means that only ancient terms of the query are dependent like in a bigram model.
+As in this article indicated every term of the query is considered as a random variable and are linked to the document which shall be ranked. In addition to this Metzler and Croft distinguish into three different dependecy assumptions: full independecy, sequential independency and full dependency among the terms as illustrated in \ref{fig:termdep}. Sequential dependency means that only ancient terms of the query are dependent like in a bigram model, full independency means that all query terms are conditionally independent from one another and finally full dependency describes a model, in which all query terms are coniditionally dependened on each other. 
 
 In order to apply this method for a query following steps must be taken:
 \begin{enumerate}
@@ -16,6 +16,13 @@ In order to apply this method for a query following steps must be taken:
 \item define potential functions for the cliques of the network
 \item compute the rank of each document $P_\Lambda (D|Q)$ and sort them in a descending order
 \end{enumerate}
+
+\begin{figure}[htpb]
+  \centering
+  	\includegraphics[scale=0.4]{img/termdep.pdf} 
+  \caption{Dependency assumptions: a) full independency, b) sequential dependency and c) full dependency}
+  \label{fig:termdep}
+\end{figure}
 
 Hereby D is a document, Q a query and $P_\Lambda$ a function which applies a weighted potential function to each clique of the Markov model. The potential functions can be considered as compatibility functions, as described in \ref{sec:methodology}, and are restriced to be strictly positive by \cite{metzler2005markov}. Further if full independency is assummed every term would form a smallest clique with the document under investigation and will lead to one contribution to the rank of the document with repect to the query. If elsewise full dependency is assummed, there are also cliques with all query terms and the document taken into account.
 
