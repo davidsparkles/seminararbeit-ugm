@@ -26,7 +26,7 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
 
 \subsection{Parameterization}
 
-TODO: parameters and factors do NOT represent probabilities \ref{koller2009probabilistic} they are more like compatibilities of those variables and thus they do not necessarily need to sum up to one
+TODO: parameters and factors do NOT represent probabilities \cite{koller2009probabilistic} they are more like compatibilities of those variables and thus they do not necessarily need to sum up to one
 
 In order to calculate probabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assign a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure.
 
