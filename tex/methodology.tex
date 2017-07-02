@@ -1,6 +1,12 @@
-Before deeper concepts, algorithms and application of undirected graphical models are illustrated, some basics of those models need to be explained. For instance the formal definition of undirected graphs as well as their parameterization.
+\subsection{Essentials of probability theory and graph theory}
+% 1 page
 
-\subsection{Definition}
+- chapter 2
+- probability distribution, random variables, joint distribution, independence / conditional independence, querying / expectation / variance
+- nodes, edges, subgraphs, paths / trails, cycles / loops
+
+\subsection{Introduction to undirected graphical model}
+% 1.5 pages
 
 As other graphical models like the Bayesian network the undirected graphical network consists of a set of nodes $V$ (also called vertices) and a set of edges between the nodes $E$, which is a set of tuples of exactly two nodes. The key difference to a Bayesian network is that those edges are not directed, in the meaning that the dependency between two nodes do not have a direction, as described in \cite{koller2009probabilistic}.
 
@@ -25,6 +31,7 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
 \end{figure}
 
 \subsection{Parameterization}
+% 1.5 pages
 
 TODO: parameters and factors do NOT represent probabilities \cite{koller2009probabilistic} they are more like compatibilities of those variables and thus they do not necessarily need to sum up to one
 
@@ -37,7 +44,7 @@ In order to calculate probabilities on an undirected graphical model, the model 
   \label{fig:param}
 \end{figure}
 
-TODO: refactor the factor product, refer to \ref{koller2009probabilistic} page 106 ca.
+TODO: refactor the factor product, refer to \cite{koller2009probabilistic} page 107 ff.
 
 With this method all factors over two random variables, which are directly linked via an edge, can be expressed. Based on those factors we can calculate factors over larger subsets or the whole model. This is achieved by multiplying factors, which share at least one node, as for example $\phi(A,C)$ and $\phi(C,D)$ as shown in figure \ref{fig:basic}. When calculating the factor product, the probability of every parameter of the first factor is multiplied with the probability of the referring parameter of the second factor with respect to the shared random variable, such that for every different combination a parameter of the superior factor exists. If $A$, $C$ and $D$ for instance are binary random variables, the factor over those three nodes would have $2^3=8$ parameters, as shown in figure \ref{fig:parammult}.
 
@@ -49,3 +56,20 @@ With this method all factors over two random variables, which are directly linke
 \end{figure}
 
 Thus to compute a full joint distribution every single factor involved in this distribution needs to be taken into account. If the joint probability of the Markov network is strictly positive than this distribution is also considered a Gibbs distribution, as described in \cite{kindermann1980markov}.
+
+\subsection{Independences in Markov networks}
+% 0.5 page
+
+- chapter 4.3
+
+\subsection{Inference on undirected models}
+% 1 page
+
+- Part II
+- Brief: what can you do on undirected graphs, what is the specialty
+
+\subsection{Learning on undirected models}
+% 1 page
+
+- Part III
+- Brief: what can you do on undirected graphs, what is the specialty
