@@ -1,12 +1,32 @@
 \subsection{Essentials of probability theory and graph theory}
 % 1 page
 
-- chapter 2
-- probability distribution, random variables, joint distribution, independence / conditional independence, querying / expectation / variance
-- nodes, edges, subgraphs, paths / trails, cycles / loops
+\subsubsection{Probability theory}
+[chapter 2]
+
+- probability: degree of belief that an event happens
+- random variable: representing a set of events which are mutually exclusive, e.g. a die
+- random variables have values
+- probability distribution: assignment of real numbers to values of event, sum up to 1 $\Omega$
+- joint distribution: combination of probability distribution of multiple random variables
+- independence / conditional independence
+- querying / expectation / variance: given certain events, how likely is a other event to occur
+
+\subsubsection{Graph theory}
+
+- nodes: in case of probabilistic models -> random variables
+- edges: set of (ordered) pairs of nodes (can be directed or undirected), here we mainly refer to undirected edges
+- subgraphs: subset of nodes including all edges amongst them if given in the original set of edges
+- paths / trails: set of edges which connect two nodes -> if there is a path there is a dependency
+- cycles / loops - set of edges with same starting and ending point, not using the same edge twice
 
 \subsection{Introduction to undirected graphical model}
 % 1.5 pages
+
+- nodes as random variables
+- edges undirected representing dependencies
+- defined independences by Markov properties
+- example of undirected graphical model: with a good textual example (real life example)
 
 As other graphical models like the Bayesian network the undirected graphical network consists of a set of nodes $V$ (also called vertices) and a set of edges between the nodes $E$, which is a set of tuples of exactly two nodes. The key difference to a Bayesian network is that those edges are not directed, in the meaning that the dependency between two nodes do not have a direction, as described in \cite{koller2009probabilistic}.
 
@@ -33,7 +53,11 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
 \subsection{Parameterization}
 % 1.5 pages
 
-TODO: parameters and factors do NOT represent probabilities \cite{koller2009probabilistic} they are more like compatibilities of those variables and thus they do not necessarily need to sum up to one
+- intro: probabilistic graphical model shall provide independences as well as the parameterization between the variables, so inference and learning is possible (ref to chapters down there)
+- ref to cpd: as we will see in [ref to Bayesian network] conditional probability distributions are used, but this is not possible here cause the mutual dependency, but affinities of certain value combinations between dependent are expressed in real number (like compatibilities) -> in a factor
+- factor: set of variables (cliques), do not have to sum up to 1
+- factor-multiplication: multiply real numbers where values match up
+- full probability distribution: unnormalized, normalized, inference by summing up probabilities -> REMEMBER Markov property, when a variable is cut of by given ones, it is independent
 
 In order to calculate probabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assign a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure.
 
