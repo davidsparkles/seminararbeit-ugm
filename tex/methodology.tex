@@ -21,25 +21,15 @@
 - cycles / loops - set of edges with same starting and ending point, not using the same edge twice
 
 \subsection{Introduction to undirected graphical model}
-% 1.5 pages
+% 1 page
 
 - nodes as random variables
 - edges undirected representing dependencies
-- defined independences by Markov properties
 - example of undirected graphical model: with a good textual example (real life example)
 
 As other graphical models like the Bayesian network the undirected graphical network consists of a set of nodes $V$ (also called vertices) and a set of edges between the nodes $E$, which is a set of tuples of exactly two nodes. The key difference to a Bayesian network is that those edges are not directed, in the meaning that the dependency between two nodes do not have a direction, as described in \cite{koller2009probabilistic}.
 
 When the edges of a undirected graph represent random variables, it is called a undirected graphical model or also Markov network or Markov random field. The edges hereby represent a probabilistic dependency between the linked random variables, as \cite{kindermann1980markov} describes.
-
-To be considered as a Markov network (or Markov random field) the random variables need to satisfy the following Markov properties with respect to the graph, as described in \cite{markov1957theory}:
-
-\begin{enumerate}
-\item Pairwise Markov property: Given all other random variables two non-adjacent (which means there is no edge between those two nodes) variables are conditionally independent.
-\item Local Markov property: Given all its neighbors a random variable is conditionally independent of all other non-adjacent random variables.
-\item Global Markov property: Any two subsets are conditionally independent if any path between them passes through a given third subset which is disjoint to those both.  
-\end{enumerate}
-
 
 Figure \ref{fig:basic} shows a simple example of an graphical model (Markov network) with a set of four random variables $V=\{A,B,C,D\}$ and four probabilistic dependencies (edges): $E=\{(A,B),(B,C),(A,C),(C,D)\}$. In this example, the nodes could represent humans and the edges could represent a probabilistic presentation of how like it is, that two persons are relatives. Based on such a model the probability of how likely it is that all four persons are relatives could be calculated. To do so, it is necessary to parameterize the model.
 
@@ -51,13 +41,14 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
 \end{figure}
 
 \subsection{Parameterization}
-% 1.5 pages
+% 2 pages
 
 - intro: probabilistic graphical model shall provide independences as well as the parameterization between the variables, so inference and learning is possible (ref to chapters down there)
 - ref to cpd: as we will see in [ref to Bayesian network] conditional probability distributions are used, but this is not possible here cause the mutual dependency, but affinities of certain value combinations between dependent are expressed in real number (like compatibilities) -> in a factor
 - factor: set of variables (cliques), do not have to sum up to 1
 - factor-multiplication: multiply real numbers where values match up
-- full probability distribution: unnormalized, normalized, inference by summing up probabilities -> REMEMBER Markov property, when a variable is cut of by given ones, it is independent
+- full joint distribution: unnormalized, normalized, inference by summing up probabilities -> REMEMBER Markov property, when a variable is cut of by given ones, it is independent
+- table for a factor and table for a full joint distribution
 
 In order to calculate probabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assign a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure.
 
@@ -84,7 +75,19 @@ Thus to compute a full joint distribution every single factor involved in this d
 \subsection{Independences in Markov networks}
 % 0.5 page
 
-- chapter 4.3
+- defined independences by Markov properties
+- global
+- local
+- relationships
+
+To be considered as a Markov network (or Markov random field) the random variables need to satisfy the following Markov properties with respect to the graph, as described in \cite{markov1957theory}:
+
+\begin{enumerate}
+\item Pairwise Markov property: Given all other random variables two non-adjacent (which means there is no edge between those two nodes) variables are conditionally independent.
+\item Local Markov property: Given all its neighbors a random variable is conditionally independent of all other non-adjacent random variables.
+\item Global Markov property: Any two subsets are conditionally independent if any path between them passes through a given third subset which is disjoint to those both.  
+\end{enumerate}
+
 
 \subsection{Inference on undirected models}
 % 1 page
