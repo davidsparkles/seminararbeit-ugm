@@ -49,6 +49,7 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
 - factor-multiplication: multiply real numbers where values match up
 - full joint distribution: unnormalized, normalized, inference by summing up probabilities -> REMEMBER Markov property, when a variable is cut of by given ones, it is independent
 - table for a factor and table for a full joint distribution
+- short outlook into overparameterization
 
 In order to calculate probabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assign a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure.
 
@@ -72,7 +73,7 @@ With this method all factors over two random variables, which are directly linke
 
 Thus to compute a full joint distribution every single factor involved in this distribution needs to be taken into account. If the joint probability of the Markov network is strictly positive than this distribution is also considered a Gibbs distribution, as described in \cite{kindermann1980markov}.
 
-\subsection{Independences in Markov networks}
+\subsection{Independences in Markov networks} \label{sec:indep}
 % 0.5 page
 
 - defined independences by Markov properties
@@ -92,11 +93,24 @@ To be considered as a Markov network (or Markov random field) the random variabl
 \subsection{Inference on undirected models}
 % 1 page
 
-- Part II
+- Representatives of exact inference methods:
+  - Variable Elimination [chapter 9]
+  - Clique Trees [chapter 10]
 - Brief: what can you do on undirected graphs, what is the specialty
+(- using Markov properties for more efficient inference)
 
-\subsection{Learning on undirected models}
+\subsection{Learning undirected models}
 % 1 page
 
-- Part III
-- Brief: what can you do on undirected graphs, what is the specialty
+\subsubsection{Motivation and Goals for learning probabilistic models}
+% 0.5 pages
+- [chapter 16]
+- predictions, estimations
+
+\subsubsection{Likelihood function for learning}
+% 0.5 pages
+
+- what is it
+- what methods, how does this satisfy the goals
+- specialty in comparison with Bayesian network
+- outlook

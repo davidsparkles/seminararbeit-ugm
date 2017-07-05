@@ -2,20 +2,18 @@ TODO: What other methods exist? What are the differences? What are the difficult
 
 \href{https://www.math.leidenuniv.nl/scripties/BSC-Obbens.pdf}{Interisting stuff} \cite{obbens2014inference}
 
-
 \subsection{Bayesian networks}
 % 1 page
 
-- chapter 3
+As the Markov network, the Bayesian network is also a method for representing probabilistic models with a graph. Since the roots of Bayesian networks lie in path analysis by Right in 1921 \cite{wright1921correlation} and 1934 \cite{wright1934method}, this method of representation is slightly older than the Markov networks, which was firstly introduced by Barlett in 1935 \cite{bartlett1935contingency}.
 
-TODO: probabilistic directed acyclic graphical model
+The main difference between the Bayesian and the Markov network is that the first one has directed edges whereas the second has undirected ones. Furthermore the Bayesian network is restricted to be acyclic. This means that the dependency between two random variables can never be mutual but only one-directional. Thus, the edge $(A, B)$ would indicate that $B$ depends on $A$ and that their is no path from $B$ to $A$, which means that $A$ is the cause and $B$ the effect in this particular relation.
 
-TODO: \href{https://en.wikipedia.org/wiki/Bayesian_network}{wikipedia article}
+In the contrary to Markov networks the Bayesian network is able to assign the parameters by using probabilities. Because of the condition, that the graph is an acyclic directed graph, the number of variables, on which a variable $X$ depends, is equal to the number of its incoming edges. Using conditional probability distributions (CPD) a probability is assigned to each assignment times the number of values of $X$. The sum of probabilities of a \textit{CPD} is equal to one. When inferring on a Bayesian network the factor multiplication is similar to the Markov network: Multiply the probabilities of \textit{CPDs}, such that the assignments match up. 
 
-TODO: image
+Since the affinities among assignments of random variables are expressed as probabilities, the adjustment of the parameters are not as flexible as in Markov networks (TODO: example, why is that?).
 
-TODO: Probabilistic reasoning in intelligent systems:Networks of Plausible Inference" written by Judea Pearl, chapter 3: Markov and Bayesian Networks:Two Graphical Representations of Probabilistic Knowledge, p.116:
-The main weakness of Markov networks is their inability to represent induced and non-transitive dependencies; two independent variables will be directly connected by an edge, merely because some other variable depends on both. As a result, many useful independencies go unrepresented in the network. To overcome this deficiency, Bayesian networks use the richer language of directed graphs, where the directions of the arrows permit us to distinguish genuine dependencies from spurious dependencies induced by hypothetical observations.
+In section \ref{sec:indep} the independences of a variable given a certain set of other variables was described as local Markov property using the Markov blanket for the Markov network. Also in Bayesian networks every node has a Markov blanket, for which holds that: Given the Markov blanket of a node, this node is independent from all variables unequal to the Markov blanket and the node itself. In Bayesian networks the Markov blanket includes the parents, the children and the other parents of the children. Using this property, the inference on those networks can be elevated dramatically in terms of computation time and space.
 
 \subsection{Partially directed models}
 % 1 page
@@ -25,6 +23,8 @@ The main weakness of Markov networks is their inability to represent induced and
 
 \subsection{Markov logic network}
 % 1 page
+
+\cite{richardson2006markov}
 
 TODO: Classifying Topics and Detecting Topic Shifts in Political Manifestos with a Markov logic network \cite{zirn2016classifying}
 
