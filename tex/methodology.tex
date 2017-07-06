@@ -45,13 +45,7 @@ The following example should illustrate a simple probabilistic model which is re
 \subsection{Parameterization} \label{sec:param}
 % 2 pages
 
-- intro: probabilistic graphical model shall provide independences as well as the parameterization between the variables, so inference and learning is possible (ref to chapters down there)
-- ref to cpd: as we will see in [ref to Bayesian network] conditional probability distributions are used, but this is not possible here cause the mutual dependency, but affinities of certain value combinations between dependent are expressed in real number (like compatibilities) -> in a factor
-- factor: set of variables (cliques), do not have to sum up to 1
-- factor-multiplication: multiply real numbers where values match up
-- full joint distribution: unnormalized, normalized, inference by summing up probabilities -> REMEMBER Markov property, when a variable is cut of by given ones, it is independent
-- table for a factor and table for a full joint distribution
-- short outlook into overparameterization
+% TODO: short outlook into overparameterization
 
 In order to conduct inference and learning on an Markov network, the model needs to be parameterized in the first place. Hereby the goal is to quantify the affinity, how likely the assignments of dependent variables are. The parameterization is achieved by assigning factors to subsets of random variables of the graph. The subsets needs to be cliques, which mean that each node in the clique depends on every other node in the clique. Each factor includes multiple parameters, which assign a real number to a certain combination of values of the random variable of the factors scope. For example, let $A$ and $B$ are binary random variables, which mutually depend on each other, their is a factor $\phi(A,B)$, which includes one parameter per assignment $\{(a_0,b_0),(a_0,b_1),(a_1,b_0),(a_1,b_1)\}$ . In contrary to the conditional probability distribution, which is used with Bayesian networks, as described in section \ref{sec:bayes}, the sum of assigned real numbers of a parameter do not necessarily need to sum up to one, because they do not directly represent probabilities but compatibilities amongst the nodes of the factor.
 
