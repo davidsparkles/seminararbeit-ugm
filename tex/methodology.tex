@@ -64,7 +64,9 @@ Figure \ref{fig:param} shows a factor of two dependent binary random variables a
   \label{fig:param}
 \end{figure}
 
-In order to obtain the compatibility scores of assignments of all nodes, all factors are combined with a factor multiplication. Hereby the values of the parameters across the factors are multiplied in a way, that the assignments of the random variables match up. Thus, if $A$ and $B$ is one clique with $\Phi(A,B)$ and $B$ and $C$ is another clique with $\Phi(B,C)$, then $\Phi(A,B,C)=\Phi(A,B)\times\Phi(B,C)$. Figure \ref{fig:parammult} shows an example of a factor multiplication of factors with random variables. An important aspect of the resulting factor is that the number of parameters increased. While the two original factors $\Phi(A,B)$ and $\Phi(B,C)$ had in total ten parameters, the new factor $\Phi(A,B,C)$ contains twelve parameters. So if there are $n$ binary variables and each factor is defined on two variables, the number of parameters of the single factors would be $4\times n$ but the number of parameters of the factor product of all factors would be $2^n$, which leads to more computational space and time while processing a large model with many random variables. Section \ref{sec:indep} describes how independences and given values of random variables, help to reduce the scope of factor multiplications.
+In order to obtain the compatibility scores of assignments of all nodes, all factors are combined with a factor multiplication. Hereby the values of the parameters across the factors are multiplied in a way, that the assignments of the random variables match up. Thus, if $A$ and $B$ is one clique with $\Phi(A,B)$ and $B$ and $C$ is another clique with $\Phi(B,C)$, then $\Phi(A,B,C)=\Phi(A,B)\times\Phi(B,C)$. Figure \ref{fig:parammult} shows an example of a factor multiplication of factors with random variables. If all parameters are strictly positive than this distribution is also considered a Gibbs distribution, as described in \cite{kindermann1980markov}.
+
+An important aspect of the resulting factor is that the number of parameters increased. While the two original factors $\Phi(A,B)$ and $\Phi(B,C)$ had in total ten parameters, the new factor $\Phi(A,B,C)$ contains twelve parameters. So if there are $n$ binary variables and each factor is defined on two variables, the number of parameters of the single factors would be $4\times n$ but the number of parameters of the factor product of all factors would be $2^n$, which leads to more computational space and time while processing a large model with many random variables. Section \ref{sec:indep} describes how independences and given values of random variables, help to reduce the scope of factor multiplications.
 
 Besides the number of parameters the factor multiplication delivers also unnormalized compatibility scores and not probabilities. To achieve a probability distribution the scores needs to be normalized by the sum of all scores. How inference is possible with this probability distribution is discussed in section \ref{sec:infer}.
 
@@ -76,8 +78,6 @@ Besides the number of parameters the factor multiplication delivers also unnorma
   \caption{Factor multiplication of three binary random variables}
   \label{fig:parammult}
 \end{figure}
-
-Thus to compute a full joint distribution every single factor involved in this distribution needs to be taken into account. If the joint probability of the Markov network is strictly positive than this distribution is also considered a Gibbs distribution, as described in \cite{kindermann1980markov}.
 
 \subsection{Independences in Markov networks} \label{sec:indep}
 % 0.5 page
