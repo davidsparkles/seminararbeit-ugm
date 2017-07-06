@@ -1,37 +1,39 @@
 \subsection{Essentials of probability theory and graph theory}
-% 1 page
+% 1.5 pages
 
 \subsubsection{Probability theory}
-[chapter 2]
 
-- probability: degree of belief that an event happens
-- random variable: representing a set of events which are mutually exclusive, e.g. a die
-- random variables have values
-- probability distribution: assignment of real numbers to values of event, sum up to 1 $\Omega$
-- joint distribution: combination of probability distribution of multiple random variables
-- independence / conditional independence
-- querying / expectation / variance: given certain events, how likely is a other event to occur
+The domain on probabilistic models is the probability theory. Probability describes how likely one beliefs that an event of uncertain nature occurs. By conducting multiple experiments or observing the behavior of a system, such probabilities can be estimated.
 
-\subsubsection{Graph theory}
+Because of the limited view onto a natural system, that humans or computers can have, probabilistic models are used to represent the main aspects of such system with uncertain events. Therefore a event space $\Omega$ is defined. $\Omega$ is a set of all possible outcomes of an event like rolling a die, $\Omega=\{1,2,3,4,5,6\}$.
 
-- nodes: in case of probabilistic models -> random variables
-- edges: set of (ordered) pairs of nodes (can be directed or undirected), here we mainly refer to undirected edges
-- subgraphs: subset of nodes including all edges amongst them if given in the original set of edges
-- paths / trails: set of edges which connect two nodes -> if there is a path there is a dependency
-- cycles / loops - set of edges with same starting and ending point, not using the same edge twice
+In order to quantify the belief in how likely an outcomes emerges, a real number between zero and one, called probability, is assigned to each outcome, such that the sum of the probabilities of all outcomes is equal to one. This assignment is called probability distribution.
 
-\subsection{Introduction to undirected graphical model}
-% 1 page
+Upon random experiments random variables are defined, which might represent single possible outcomes of the event space or a more complex combination. They are used in order to formulate questions of inference. For example, how likely is it, that the sum of three dies is equal to four. The random variable $X$ hereby would be the sum of numbers on three dies after rolling them. The probability would be written as $P(X=4)$. Hereby $4$ is one value of $X$. The values of a random variable $X$ is often denoted as $x_1, x_2,  ..., x_n$, if there are n possible values.
 
-- nodes as random variables
-- edges undirected representing dependencies
-- example of undirected graphical model: with a good textual example (real life example)
+Furthermore dependences or independences among random variables are important for inference. If it is known that one variable $A$ is independent from another variable $B$, it is not necessary to care about the $B$ when inferring about the probabilities of the values of $A$. $A$ is independent of $B$ if the probability distribution of $A$ does not change, whatever value $B$ attains.
 
-As other graphical models like the Bayesian network the undirected graphical network consists of a set of nodes $V$ (also called vertices) and a set of edges between the nodes $E$, which is a set of tuples of exactly two nodes. The key difference to a Bayesian network is that those edges are not directed, in the meaning that the dependency between two nodes do not have a direction, as described in \cite{koller2009probabilistic}.
+In order to simplify probabilistic inference on large models, where we have a lot of random variables and dependencies, graphical models are used, as being discussed in sections \ref{sec:introugm} and the following.
 
-When the edges of a undirected graph represent random variables, it is called a undirected graphical model or also Markov network or Markov random field. The edges hereby represent a probabilistic dependency between the linked random variables, as \cite{kindermann1980markov} describes.
+\subsubsection{Graph theory} \label{sec:graph}
 
-Figure \ref{fig:basic} shows a simple example of an graphical model (Markov network) with a set of four random variables $V=\{A,B,C,D\}$ and four probabilistic dependencies (edges): $E=\{(A,B),(B,C),(A,C),(C,D)\}$. In this example, the nodes could represent humans and the edges could represent a probabilistic presentation of how like it is, that two persons are relatives. Based on such a model the probability of how likely it is that all four persons are relatives could be calculated. To do so, it is necessary to parameterize the model.
+The second theoretical foundation of probabilistic graphical models is the graph theory. Graphs are used to represent and also illustrate a large variety of models, like also probabilistic models.
+
+The basic components of a graph are a set of nodes and a set of edges, which represent relation between the nodes. In case of probabilistic models nodes represent random variables and edges represent the dependency between two random variables. An edge is a pair of nodes, which in the case of an directed edge needs to be ordered. If the graph is undirected the pairs of nodes have not necessarily to be ordered. This project paper mainly refers to undirected graphs.
+
+Depending on the model graphs can be large and often only a restricted scope is needed to answer a certain question of interest. Therefore subgraphs are defined, such that the nodes of a subgraph is a subset of nodes of the original graph and the set of edges are all edges of the original graphs, whose nodes are also included in the subset of nodes. For example if their is a graph of relationships among students of an university and the question is how many relationships exists in a certain course, only the subgraph of the course is needed to answer the question. This might save computation time and space.
+
+Furthermore a path from node $A$ to node $Z$ is a set of edges, such which connects those nodes $\{(A,B),(B,C),...,(Y,Z)\}$. If there is a path from one node to another in an undirected graphical model, those variables are at least indirectly dependent on each other.
+% TODO: is that true???
+
+If there is a path, where the starting point is the same as the end point without using an edge multiple times, this path is considered to by a cycle. As is described in section \ref{sec:bayes} Bayesian networks are not allowed to have cycles, whereas cycles can be represented in undirected graphical models.
+
+\subsection{Introduction to undirected graphical model} \label{sec:introugm}
+% 0.5 pages
+
+As already described in section \ref{sec:graph}, in undirected graphical models nodes represent random variables and edges represent the dependences among those variables. Since the purpose of an undirected graphical model is to represent undirected mutual dependences between two variables at a time, the edges of the graph are also undirected. Probabilistic undirected graphical models are also called Markov networks or in some areas of application Markov random field, as is described in section \ref{sec:application}.
+
+The following example should illustrate a simple probabilistic model which is represented in a Markov network: Let there be four people $A$, $B$, $C$ and $D$, whereby it is unknown if their are vegetarian or not. Thus, their are four binary random variables. Furthermore it is known, that it is more likely that people that know each other are more likely to have the same eating habits than different ones. It is assumed that knowing people is mutual and not directed. As shown in \ref{fig:basic} $C$ knows all, $D$ only knows $C$, $A$ knows $B$ and $C$ and $B$ knows $A$ and $C$. In order to infer new knowledge on this Markov network and actually calculate probabilities, the Markov network requires a quantification of affinities among the nodes, which will be discussed in the next section (\ref{sec:param}). In other words, how likely is it, that for example $A$ and $B$ both are vegetarian or that $A$ is vegetarian and $B$ is not.
 
 \begin{figure}[htpb]
   \centering
@@ -40,7 +42,7 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
   \label{fig:basic}
 \end{figure}
 
-\subsection{Parameterization}
+\subsection{Parameterization} \label{sec:param}
 % 2 pages
 
 - intro: probabilistic graphical model shall provide independences as well as the parameterization between the variables, so inference and learning is possible (ref to chapters down there)
@@ -51,7 +53,9 @@ Figure \ref{fig:basic} shows a simple example of an graphical model (Markov netw
 - table for a factor and table for a full joint distribution
 - short outlook into overparameterization
 
-In order to calculate probabilities on an undirected graphical model, the model needs to be parameterized in the first place. Such a parameterization is achieved by assigning factors to subsets of random variables of the graph. Each factor consists of parameters, which assign a real number to a certain combination of values the included random variables can adapt. If for example there is a factor over two binary random variables $A$ and $B$ the factor $\phi(A,B)$ would have four parameters for each combination of values of $A$ and $B$. Figure \ref{fig:param} shows such a factor and demonstrate the assignment of probabilities to each possible combination. If the assigned real numbers represent probabilities and not any kind of unnormalized score, they sum up to one, as shown in the figure.
+In order to conduct inference and learning on an Markov network, the model needs to be parameterized in the first place. Hereby the goal is to quantify the affinity, how likely the assignments of dependent variables are. The parameterization is achieved by assigning factors to subsets of random variables of the graph. The subsets needs to be cliques, which mean that each node in the clique depends on every other node in the clique. Each factor includes multiple parameters, which assign a real number to a certain combination of values of the random variable of the factors scope. For example, let $A$ and $B$ are binary random variables, which mutually depend on each other, their is a factor $\phi(A,B)$, which includes one parameter per assignment $\{(a_0,b_0),(a_0,b_1),(a_1,b_0),(a_1,b_1)\}$ . In contrary to the conditional probability distribution, which is used with Bayesian networks, as described in section \ref{sec:bayes}, the sum of assigned real numbers of a parameter do not necessarily need to sum up to one, because they do not directly represent probabilities but compatibilities amongst the nodes of the factor.
+
+Figure \ref{fig:param} shows a factor of two dependent binary random variables and demonstrate the assignment of compatibility to each parameter.
 
 \begin{figure}[htpb]
   \centering
@@ -60,9 +64,11 @@ In order to calculate probabilities on an undirected graphical model, the model 
   \label{fig:param}
 \end{figure}
 
-TODO: refactor the factor product, refer to \cite{koller2009probabilistic} page 107 ff.
+In order to obtain the compatibility scores of assignments of all nodes, all factors are combined with a factor multiplication. Hereby the values of the parameters across the factors are multiplied in a way, that the assignments of the random variables match up. Thus, if $A$ and $B$ is one clique with $\Phi(A,B)$ and $B$ and $C$ is another clique with $\Phi(B,C)$, then $\Phi(A,B,C)=\Phi(A,B)\times\Phi(B,C)$. Figure \ref{fig:parammult} shows an example of a factor multiplication of factors with random variables. An important aspect of the resulting factor is that the number of parameters increased. While the two original factors $\Phi(A,B)$ and $\Phi(B,C)$ had in total ten parameters, the new factor $\Phi(A,B,C)$ contains twelve parameters. So if there are $n$ binary variables and each factor is defined on two variables, the number of parameters of the single factors would be $4\times n$ but the number of parameters of the factor product of all factors would be $2^n$, which leads to more computational space and time while processing a large model with many random variables. Section \ref{sec:indep} describes how independences and given values of random variables, help to reduce the scope of factor multiplications.
 
-With this method all factors over two random variables, which are directly linked via an edge, can be expressed. Based on those factors we can calculate factors over larger subsets or the whole model. This is achieved by multiplying factors, which share at least one node, as for example $\phi(A,C)$ and $\phi(C,D)$ as shown in figure \ref{fig:basic}. When calculating the factor product, the probability of every parameter of the first factor is multiplied with the probability of the referring parameter of the second factor with respect to the shared random variable, such that for every different combination a parameter of the superior factor exists. If $A$, $C$ and $D$ for instance are binary random variables, the factor over those three nodes would have $2^3=8$ parameters, as shown in figure \ref{fig:parammult}.
+Besides the number of parameters the factor multiplication delivers also unnormalized compatibility scores and not probabilities. To achieve a probability distribution the scores needs to be normalized by the sum of all scores. How inference is possible with this probability distribution is discussed in section \ref{sec:infer}.
+
+% TODO: image: use a,b,c like in the book and do unnormalized and normalized, like in the book
 
 \begin{figure}[htpb]
   \centering
@@ -90,7 +96,7 @@ To be considered as a Markov network (or Markov random field) the random variabl
 \end{enumerate}
 
 
-\subsection{Inference on undirected models}
+\subsection{Inference on undirected models} \label{sec:infer}
 % 1 page
 
 - Representatives of exact inference methods:
