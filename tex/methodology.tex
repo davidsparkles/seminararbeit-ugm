@@ -31,6 +31,8 @@ If there is a path, where the starting point is the same as the end point withou
 \subsection{Introduction to undirected graphical model} \label{sec:introugm}
 % 0.5 pages
 
+\cite{hammersley1971markov}, first introduction on Markov networks
+
 As already described in section \ref{sec:graph}, in undirected graphical models nodes represent random variables and edges represent the dependences among those variables. Since the purpose of an undirected graphical model is to represent undirected mutual dependences between two variables at a time, the edges of the graph are also undirected. Probabilistic undirected graphical models are also called Markov networks or in some areas of application Markov random field, as is described in section \ref{sec:application}.
 
 The following example should illustrate a simple probabilistic model which is represented in a Markov network: Let there be four people $A$, $B$, $C$ and $D$, whereby it is unknown if their are vegetarian or not. Thus, their are four binary random variables. Furthermore it is known, that it is more likely that people that know each other are more likely to have the same eating habits than different ones. It is assumed that knowing people is mutual and not directed. As shown in \ref{fig:basic} $C$ knows all, $D$ only knows $C$, $A$ knows $B$ and $C$ and $B$ knows $A$ and $C$. In order to infer new knowledge on this Markov network and actually calculate probabilities, the Markov network requires a quantification of affinities among the nodes, which will be discussed in the next section (\ref{sec:param}). In other words, how likely is it, that for example $A$ and $B$ both are vegetarian or that $A$ is vegetarian and $B$ is not.
@@ -76,28 +78,35 @@ Besides the number of parameters the factor multiplication delivers also unnorma
 \subsection{Independences in Markov networks} \label{sec:indep}
 % 0.5 page
 
-- defined independences by Markov properties
-- global
-- local
-- relationships
+As described in section \ref{sec:introugm} the Markov network is supposed to represent the dependencies of a model. Since the dependencies are mutual, they flow along every direction through the graph, such that if there is a graph, in which there is a path from each node to every other node, all variables are indirectly dependent on each other, under the condition that their are no fixed assignments yet. In the contrary if there is a condition on a variables, the dependency "flow" stops right at this node.
 
-To be considered as a Markov network (or Markov random field) the random variables need to satisfy the following Markov properties with respect to the graph, as described in \cite{markov1957theory}:
+From that the Markov properties are derived: the pairwise, local and global Markov property. The global Markov property states, that if there is a Markov network with a set of nodes $\mathbf{V}$ and two distinct subsets of nodes of $\mathbf{V}$ ($\mathbf{A}, \mathbf{B} \subset \mathbf{V} \wedge \mathbf{A} \cap \mathbf{B} = \emptyset$), and a third subset $\mathbf{C}$ that is also distinct from $\mathbf{A}$ and $\mathbf{B}$, the values of all its nodes are known and every path from a node of $\mathbf{A}$ to a node of $\mathbf{B}$ passes a node of $\mathbf{C}$, then all nodes of $\mathbf{A}$ are independent from all nodes of $\mathbf{B}$ and vise versa. This means, if there is a very large Markov network in practice and the need of inferring over a node, the computational effort in time and disc space can be dramatically reduced by finding such separating given subsets. This holds also for the local and the pairwise Markov property.
 
-\begin{enumerate}
-\item Pairwise Markov property: Given all other random variables two non-adjacent (which means there is no edge between those two nodes) variables are conditionally independent.
-\item Local Markov property: Given all its neighbors a random variable is conditionally independent of all other non-adjacent random variables.
-\item Global Markov property: Any two subsets are conditionally independent if any path between them passes through a given third subset which is disjoint to those both.  
-\end{enumerate}
+The local Markov property states, that if all adjacent nodes of a target node are given the target node is independent from all other nodes in the model. This set of adjacent nodes is also called Markov blanket and is also used in Bayesian networks, but with a different definition, as is described in section \ref{sec:bayes}. Finally the pairwise Markov property states, that two non-adjacent nodes are independent from each other, if all other nodes of the network are given. To be considered a Markov network the model needs to satisfy those three Markov properties, as described in \cite{markov1957theory}.
 
 
 \subsection{Inference on undirected models} \label{sec:infer}
 % 1 page
 
-- Representatives of exact inference methods:
-  - Variable Elimination [chapter 9]
-  - Clique Trees [chapter 10]
-- Brief: what can you do on undirected graphs, what is the specialty
-(- using Markov properties for more efficient inference)
+The goal of inference in probabilistic models is to gain knowledge about unknown facets like unknown random variables. This paper focuses on inferring knowledge about unknown variables, called query, given evidence in the form of known variables $P(Y|E=e)$.
+
+- use conditional distribution by summing up joint distributions, for conditional probability query
+- not efficient, NP-hard -> worst case exponential
+- variable elimination:
+ - basic idea: eliminating a variable by summing out
+ - given a set of variables and a subset X $\Rightarrow$ $\Phi(X,Y)$ $\Rightarrow$ sum over values of Y $\Rightarrow$ generate factor of X without Y
+ - ref to a table picture % like in p.297
+ - how does this reduce complexity?
+ - how to chose variable to eliminate?
+
+% sources: https://en.wikipedia.org/wiki/Variable_elimination
+
+- Clique trees % short description of the approach chapter 10
+
+- Approximate target distribution % short description of the approach chapter 11
+ - energy functional % section 11.2
+ - propagation-based algorithm % section 11.3
+
 
 \subsection{Learning undirected models}
 % 1 page
