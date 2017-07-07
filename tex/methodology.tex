@@ -32,6 +32,7 @@ If there is a path, where the starting point is the same as the end point withou
 % 0.5 pages
 
 \cite{hammersley1971markov}, first introduction on Markov networks
+\cite{pearl2014probabilistic}
 
 As already described in section \ref{sec:graph}, in undirected graphical models nodes represent random variables and edges represent the dependences among those variables. Since the purpose of an undirected graphical model is to represent undirected mutual dependences between two variables at a time, the edges of the graph are also undirected. Probabilistic undirected graphical models are also called Markov networks or in some areas of application Markov random field, as is described in section \ref{sec:application}.
 
@@ -74,6 +75,11 @@ Besides the number of parameters the factor multiplication delivers also unnorma
   \caption{Factor multiplication of three binary random variables}
   \label{fig:parammult}
 \end{figure}
+
+% TODO Parameterization revisited: log-linear models
+
+- clique potentials are often replaced by an exponentiated sum of features times their weights in log linear models
+- this features are used in Markov logic networks, as discussed in section \ref{sec:mln}
 
 \subsection{Independences in Markov networks} \label{sec:indep}
 % 0.5 page

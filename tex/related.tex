@@ -23,22 +23,23 @@ In section \ref{sec:indep} the independences of a variable given a certain set o
 - chapter 4.6
 
 
-\subsection{Markov logic network}
+\subsection{Markov logic network} \label{sec:mln}
 % 1 page
 
 In 2006 Matthew Richardson and Pedro Domingos from the University of Washington in Seatle proposed to combine first-order logic with probabilistic graphical models and named it Markov logic network \cite{richardson2006markov}. This section firstly describes what a Markov logic network is and how it extends the Markov network and secondly discusses the benefits of this approach and what types of problems it confronts.
 
-TODO: Classifying Topics and Detecting Topic Shifts in Political Manifestos with a Markov logic network \cite{zirn2016classifying}
+- first-order knowledge base set of sentences or formulas in first-order logic
+- constants (objects), variables (range over the objects of the domain), functions (maps tuple of objects onto objects), predicates (relations between or attributes of objects)
+- example of those
+- terms and sentences
 
-TODO: probabilistic logic -> enabling uncertain inference
+- assign weights to the sentences of the KB
+- MLN is a set of pairs of first-order logic formulas and weights expressed in real numbers. the Markov network is defined by L and the finite set of constants of the domain 
+ - a binary node for each predicate appearing in L
+ - a feature for each formula, the weight of the feature is the weight of the formula
 
-TODO: \href{https://en.wikipedia.org/wiki/Markov_logic_network}{wikipedia article}
+- Example for an application: Classifying Topics and Detecting Topic Shifts in Political Manifestos with a Markov logic network \cite{zirn2016classifying}
 
-TODO: \cite{koller2009probabilistic} chapter 20 learning undirected models
-
-TODO: Main (first article about this) \cite{richardson2006markov}
-
-TODO: application: Classifying Topics and Detecting Topic Shifts in Political Manifestos \cite{zirn2016classifying}
 
 \subsection{Markov chain}
 % optional: 1 page
