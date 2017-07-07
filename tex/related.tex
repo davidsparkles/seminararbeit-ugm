@@ -3,7 +3,7 @@ TODO: What other methods exist? What are the differences? What are the difficult
 \href{https://www.math.leidenuniv.nl/scripties/BSC-Obbens.pdf}{Interisting stuff} \cite{obbens2014inference}
 
 \subsection{Bayesian networks} \label{sec:bayes}
-% 1 page
+% 2 page
 
 As the Markov network, the Bayesian network is also a method for representing probabilistic models with a graph. Since the roots of Bayesian networks lie in path analysis by Right in 1921 \cite{wright1921correlation} and 1934 \cite{wright1934method}, this method of representation is slightly older than the Markov networks, which was firstly introduced by Barlett in 1935 \cite{bartlett1935contingency}.
 
@@ -17,14 +17,16 @@ In section \ref{sec:indep} the independences of a variable given a certain set o
 
 % TODO: example bayesian networks with cpd annotations
 
+% TODO: Transformation of Bayesian network to Markov network and vise versa
+
 \subsection{Partially directed models}
 % 1 page
-
+% not sure of this
 - chapter 4.6
 
 
 \subsection{Markov logic network} \label{sec:mln}
-% 1 page
+% 1.5 page
 
 In 2006 Matthew Richardson and Pedro Domingos from the University of Washington in Seatle proposed to combine first-order logic with probabilistic graphical models and named it Markov logic network \cite{richardson2006markov}. This section firstly describes what a Markov logic network is and how it extends the Markov network and secondly discusses the benefits of this approach and what types of problems it confronts.
 
@@ -36,19 +38,16 @@ In 2006 Matthew Richardson and Pedro Domingos from the University of Washington 
 - assign weights to the sentences of the KB
 - MLN is a set of pairs of first-order logic formulas and weights expressed in real numbers. the Markov network is defined by L and the finite set of constants of the domain 
  - a binary node for each predicate appearing in L
- - a feature for each formula, the weight of the feature is the weight of the formula
+ - a binary feature for each formula, the weight of the feature is the weight of the formula
+- example shown in \cite{richardson2006markov} with Anna and Bob smoking, cancer and Friends % include figures
 
-- Example for an application: Classifying Topics and Detecting Topic Shifts in Political Manifestos with a Markov logic network \cite{zirn2016classifying}
-
-
-\subsection{Markov chain}
-% optional: 1 page
-
-TODO: Markov chain/ Markov process has time restrictions, Markov network has spatial restrictions
-
-TODO: \href{https://en.wikipedia.org/wiki/Markov_chain}{wikipedia article}
-
-TODO: image
-
+- inference
+ - arbitrary queries of the form how likely does a formula $F_1$ holds given that $F_2$ holds? both in first-order logic and a finite set of constants, including all constants that appear in F1 and F2 \cite{richardson2006markov} and L is a MLN
+  - use conditional probability and sum up all worlds where both are true divided by where F2 is true
+  
+- learning
+ - learning the weights of the formulas
+ - areas of application: classification, link prediction, social network modeling, object identification
+ - Example for an learning application: Classifying Topics and Detecting Topic Shifts in Political Manifestos with a Markov logic network \cite{zirn2016classifying}
 
 
