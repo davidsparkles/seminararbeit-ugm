@@ -38,6 +38,8 @@ As already described in section \ref{sec:graph}, in undirected graphical models 
 
 The following example should illustrate a simple probabilistic model which is represented in a Markov network: Let there be four people $A$, $B$, $C$ and $D$, whereby it is unknown if their are vegetarian or not. Thus, their are four binary random variables. Furthermore it is known, that it is more likely that people that know each other are more likely to have the same eating habits than different ones. It is assumed that knowing people is mutual and not directed. As shown in \ref{fig:basic} $C$ knows all, $D$ only knows $C$, $A$ knows $B$ and $C$ and $B$ knows $A$ and $C$. In order to infer new knowledge on this Markov network and actually calculate probabilities, the Markov network requires a quantification of affinities among the nodes, which will be discussed in the next section (\ref{sec:param}). In other words, how likely is it, that for example $A$ and $B$ both are vegetarian or that $A$ is vegetarian and $B$ is not.
 
+% TODO: change basic to the misconception example (A,B)(B,C)(C,D)(D,A)
+
 \begin{figure}[htpb]
   \centering
   	\includegraphics[scale=0.3]{img/basic.pdf} 
@@ -109,30 +111,34 @@ P(y,e)=\sum_w{P(y,e,w)},\ with\ \mathbf{W} = \mathcal{X} - \mathbf{V} - \mathbf{
 \label{eq:sum}
 \end{equation}
 
-Hereby the independences, described in section \ref{sec:indep}, are useful in order to reduce the amount of factors, which are needed to compute the sufficient joint distribution. Thus, computational costs can be dramatically reduced, if the evidence cuts of large parts of the graph.
+In this context the independences, described in section \ref{sec:indep}, are useful in order to reduce the amount of factors, which are needed to compute the sufficient joint distribution. Thus, computational costs can be dramatically reduced, if the evidence cuts of large parts of the graph.
 
 In any case, this approach is not efficient in terms of complexity. As described in section \ref{sec:param} the number of parameters in the full joint distribution increases exponentially with increasing random variables. To solve this problem algorithm were found, which either enable exact or approximated inference on Markov networks.
 
-An exact algorithm for inference on Markov networks is the variable elimination.
+A simple algorithm for exact inference is variable elimination, which is in the following represented as one example of inference algorithms in Markov networks. As described above, in order to compute joint distribution all involved factors have to be multiplied and accordingly summed out. In equation \ref{eq:fullsum} the formula for computing the unnormalized distribution $\widetilde{P}(D)$ with respect to the graph, which was presented in figure \ref{fig:basic}, is shown. Equation \ref{eq:rightsum} shows how the sum for $B$ is moved to the right and isolated all factors, which include the variable $B$. Based on this step the new factor $\tau_1(A,C)$ can be computed by applying the factor product and summing out $B$. Thus, the variable $B$ is eliminated from the calculation and replaced by the intermediate result $\tau_1(A,C)$, as can be seen in equation \ref{eq:reducedsum}. In the next steps also $A$ and $C$ are eliminated, so that the result is as in equation \ref{eq:endsum}. The resulting $\widetilde{P}(D)$ is proportional to $P(D)$ and can be mapped onto $P(D)$ by normalizing the score, as was described in section \ref{sec:param}.
 
-%- not efficient, NP-hard $\Rightarrow$ worst case exponential
-%- variable elimination:
-% - basic idea: eliminating a variable by summing out
-% - given a set of variables and a subset X $\Rightarrow$ $\Phi(X,Y)$ %$\Rightarrow$ sum over values of Y $\Rightarrow$ generate factor of X without Y
-% - ref to a table picture % like in p.297
-% - how does this reduce complexity?
-% - how to chose variable to eliminate?
+\begin{equation}
+\widetilde{P}(D)=\sum_A{\sum_B{\sum_C{\phi_1(A,B)\times\phi_2(B,C)\times\phi_3(C,D)\times\phi_4(A,D)}}}
+\label{eq:fullsum}
+\end{equation}
 
-% sources: https://en.wikipedia.org/wiki/Variable_elimination
-% https://www.youtube.com/watch?v=jz02X3hByac
+\begin{equation}
+\widetilde{P}(D)=\sum_A{\sum_C{\phi_3(C,D)\times\phi_4(A,D)\times\sum_B{\phi_1(A,B)\times\phi_2(B,C)}}}
+\label{eq:rightsum}
+\end{equation}
 
-%- Clique trees % short description of the approach chapter 10
+\begin{equation}
+\widetilde{P}(D)=\sum_A{\sum_C{\phi_3(C,D)\times\phi_4(A,D)\times\tau_1(A,C)}}
+\label{eq:reducedsum}
+\end{equation}
 
-%- Approximate target distribution % short description of the approach chapter 11
-% - energy functional % section 11.2
-% - propagation-based algorithm % section 11.3
+\begin{equation}
+\widetilde{P}(D)=\tau_3(D)
+\label{eq:endsum}
+\end{equation}
 
-%- MAP and maximum-likelihood
+
+Still the computation costs can be very high for exact inference, if the network is very large. In order to achieve viable computation times, approximation methods are used. Amongst them are for example the direct sampling or the Markov Chain Monte Carlo sampling. %TODO: cite sources (Short description)
 
 \subsection{Learning undirected models}
 % 1 page
