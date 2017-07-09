@@ -94,26 +94,45 @@ The local Markov property states, that if all adjacent nodes of a target node ar
 \subsection{Inference on undirected models} \label{sec:infer}
 % 1 page
 
-The goal of inference in probabilistic models is to gain knowledge about unknown facets like unknown random variables. This paper focuses on inferring knowledge about unknown variables, called query, given evidence in the form of known variables $P(Y|E=e)$.
+The goal of inference in probabilistic models is to gain knowledge like about unknown random variables. This section briefly discusses inferring knowledge about unknown variables, called query variables $Y$, given evidence $E=e$ in the form of known variables $P(Y|E=e)$ in Markov networks. Thus the result is a probability distribution over a set of query variables given a set of known variables. The set of query and the set of evidence variables are subsets of the set of all variables of the graph $Y,E \subset \mathcal{X}$.
 
-- use conditional distribution by summing up joint distributions, for conditional probability query
-- not efficient, NP-hard -> worst case exponential
-- variable elimination:
- - basic idea: eliminating a variable by summing out
- - given a set of variables and a subset X $\Rightarrow$ $\Phi(X,Y)$ $\Rightarrow$ sum over values of Y $\Rightarrow$ generate factor of X without Y
- - ref to a table picture % like in p.297
- - how does this reduce complexity?
- - how to chose variable to eliminate?
+Since the interrogation is a conditional probability, the definition can be applied:
+
+\begin{equation}
+P(\mathbf{Y}\ |\ E=e)=\frac{P(\mathbf{Y},e)}{P(e)}
+\end{equation}
+
+The probability $P(y,e)$ for a specific value $y \in Val(\mathbf{Y})$ can be computed by summing out all parameters of the full joint distribution where $y$ and $e$ matches the corresponding values in the distribution, as described in equation \ref{eq:sum}. Regarding Markov networks this would mean to sum out the normalized distribution.
+
+\begin{equation}
+P(y,e)=\sum_w{P(y,e,w)},\ with\ \mathbf{W} = \mathcal{X} - \mathbf{V} - \mathbf{E}
+\label{eq:sum}
+\end{equation}
+
+Hereby the independences, described in section \ref{sec:indep}, are useful in order to reduce the amount of factors, which are needed to compute the sufficient joint distribution. Thus, computational costs can be dramatically reduced, if the evidence cuts of large parts of the graph.
+
+In any case, this approach is not efficient in terms of complexity. As described in section \ref{sec:param} the number of parameters in the full joint distribution increases exponentially with increasing random variables. To solve this problem algorithm were found, which either enable exact or approximated inference on Markov networks.
+
+An exact algorithm for inference on Markov networks is the variable elimination.
+
+%- not efficient, NP-hard $\Rightarrow$ worst case exponential
+%- variable elimination:
+% - basic idea: eliminating a variable by summing out
+% - given a set of variables and a subset X $\Rightarrow$ $\Phi(X,Y)$ %$\Rightarrow$ sum over values of Y $\Rightarrow$ generate factor of X without Y
+% - ref to a table picture % like in p.297
+% - how does this reduce complexity?
+% - how to chose variable to eliminate?
 
 % sources: https://en.wikipedia.org/wiki/Variable_elimination
+% https://www.youtube.com/watch?v=jz02X3hByac
 
-- Clique trees % short description of the approach chapter 10
+%- Clique trees % short description of the approach chapter 10
 
-- Approximate target distribution % short description of the approach chapter 11
- - energy functional % section 11.2
- - propagation-based algorithm % section 11.3
+%- Approximate target distribution % short description of the approach chapter 11
+% - energy functional % section 11.2
+% - propagation-based algorithm % section 11.3
 
-- MAP and maximum-likelihood
+%- MAP and maximum-likelihood
 
 \subsection{Learning undirected models}
 % 1 page
