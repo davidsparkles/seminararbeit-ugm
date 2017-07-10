@@ -9,9 +9,17 @@ As the Markov network, the Bayesian network is also a method for representing pr
 
 The main difference between the Bayesian and the Markov network is that the first one has directed edges whereas the second has undirected ones. Furthermore the Bayesian network is restricted to be acyclic. This means that the dependency between two random variables can never be mutual but only one-directional. Thus, the edge $(A, B)$ would indicate that $B$ depends on $A$ and that their is no path from $B$ to $A$, which means that $A$ is the cause and $B$ the effect in this particular relation.
 
-In the contrary to Markov networks the Bayesian network is able to assign the parameters by using probabilities. Because of the condition, that the graph is an acyclic directed graph, the number of variables, on which a variable $X$ depends, is equal to the number of its incoming edges. Using conditional probability distributions (CPD) a probability is assigned to each assignment times the number of values of $X$. The sum of probabilities of a \textit{CPD} is equal to one. When inferring on a Bayesian network the factor multiplication is similar to the Markov network: Multiply the probabilities of \textit{CPDs}, such that the assignments match up. 
+In the contrary to Markov networks the Bayesian network is able to assign the parameters by using probabilities. Because of the condition, that the graph is an acyclic directed graph, the number of variables, on which a variable $X$ depends, is equal to the number of its incoming edges. Using conditional probability distributions (CPD) a probability is assigned to each assignment times the number of values of $X$. The sum of probabilities of a \textit{CPD} is equal to one. When inferring on a Bayesian network the factor multiplication is similar to the Markov network: Multiply the probabilities of \textit{CPDs}, such that the assignments match up. Figure \ref{fig:bayes} shows a simple Bayesian network with four binary variables and their conditional probability distributions. 
 
-Since the affinities among assignments of random variables are expressed as probabilities, the adjustment of the parameters are not as flexible as in Markov networks (TODO: example, why is that?).
+\begin{figure}[htpb]
+  \centering
+  	\includegraphics[scale=0.6]{img/bayes.pdf} 
+  \caption{Examples of a Bayesian network including the conditional probability distributions}
+  \label{fig:bayes}
+\end{figure}
+
+Since the affinities among assignments of random variables are expressed as probabilities, the adjustment of the parameters are not as flexible as in Markov networks.
+% TODO: example, why is that?
 
 In section \ref{sec:indep} the independences of a variable given a certain set of other variables was described as local Markov property using the Markov blanket for the Markov network. Also in Bayesian networks every node has a Markov blanket, for which holds that: Given the Markov blanket of a node, this node is independent from all variables unequal to the Markov blanket and the node itself. In Bayesian networks the Markov blanket includes the parents, the children and the other parents of the children. Using this property, the inference on those networks can be elevated dramatically in terms of computation time and space.
 
