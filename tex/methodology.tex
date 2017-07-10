@@ -77,7 +77,7 @@ Besides the number of parameters the factor multiplication delivers also unnorma
 \end{figure}
 
 % TODO Parameterization revisited: log-linear models
-
+% TODO clique potentials
 - clique potentials are often replaced by an exponentiated sum of features times their weights in log linear models
 - this features are used in Markov logic networks, as discussed in section \ref{sec:mln}
 
@@ -96,7 +96,7 @@ The local Markov property states, that if all adjacent nodes of a target node ar
 
 The goal of inference in probabilistic models is to gain knowledge like about unknown random variables. This section briefly discusses inferring knowledge about unknown variables, called query variables $Y$, given evidence $E=e$ in the form of known variables $P(Y|E=e)$ in Markov networks. Thus the result is a probability distribution over a set of query variables given a set of known variables. The set of query and the set of evidence variables are subsets of the set of all variables of the graph $Y,E \subset \mathcal{X}$.
 
-Since the interrogation is a conditional probability, the definition can be applied:
+Since the statement of the problem is of conditional nature, the definition of conditional probability can be applied:
 
 \begin{equation}
 P(\mathbf{Y}\ |\ E=e)=\frac{P(\mathbf{Y},e)}{P(e)}
