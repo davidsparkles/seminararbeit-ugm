@@ -36,14 +36,12 @@ If there is a path, where the starting point is the same as the end point withou
 
 As already described in section \ref{sec:graph}, in undirected graphical models nodes represent random variables and edges represent the dependences among those variables. Since the purpose of an undirected graphical model is to represent undirected mutual dependences between two variables at a time, the edges of the graph are also undirected. Probabilistic undirected graphical models are also called Markov networks or in some areas of application Markov random field, as is described in section \ref{sec:application}.
 
-The following example should illustrate a simple probabilistic model which is represented in a Markov network: Let there be four people $A$, $B$, $C$ and $D$, whereby it is unknown if their are vegetarian or not. Thus, their are four binary random variables. Furthermore it is known, that it is more likely that people that know each other are more likely to have the same eating habits than different ones. It is assumed that knowing people is mutual and not directed. As shown in \ref{fig:basic} $C$ knows all, $D$ only knows $C$, $A$ knows $B$ and $C$ and $B$ knows $A$ and $C$. In order to infer new knowledge on this Markov network and actually calculate probabilities, the Markov network requires a quantification of affinities among the nodes, which will be discussed in the next section (\ref{sec:param}). In other words, how likely is it, that for example $A$ and $B$ both are vegetarian or that $A$ is vegetarian and $B$ is not.
-
-% TODO: change basic to the misconception example (A,B)(B,C)(C,D)(D,A)
+The following example, shown in figure \ref{fig:basic} (1) should illustrate a simple probabilistic model which is represented in a Markov network: Let there be four people $A$, $B$, $C$ and $D$, whereby it is unknown if their are vegetarian or not. Thus, their are four binary random variables. Furthermore it is known, that it is more likely that people that know each other are more likely to have the same eating habits than different ones. It is assumed that knowing people is mutual and not directed. As shown in figure \ref{fig:basic} (1) $C$ knows all, $D$ only knows $C$, $A$ knows $B$ and $C$ and $B$ knows $A$ and $C$. In order to infer new knowledge on this Markov network and actually calculate probabilities, the Markov network requires a quantification of affinities among the nodes, which will be discussed in the next section (\ref{sec:param}). In other words, how likely is it, that for example $A$ and $B$ both are vegetarian or that $A$ is vegetarian and $B$ is not. Figure \ref{fig:basic} (2) shows the graphical model of the misconception problem, which is described in \cite{koller2009probabilistic} (section 4.1). This second example is revisited in section \ref{sec:infer} in order to illustrate variable elimination as inference algorithm.
 
 \begin{figure}[htpb]
   \centering
   	\includegraphics[scale=0.3]{img/basic.pdf} 
-  \caption{Simple Undirected Graphical Model}
+  \caption{Two simple examples of undirected graphical model}
   \label{fig:basic}
 \end{figure}
 
@@ -115,7 +113,7 @@ In this context the independences, described in section \ref{sec:indep}, are use
 
 In any case, this approach is not efficient in terms of complexity. As described in section \ref{sec:param} the number of parameters in the full joint distribution increases exponentially with increasing random variables. To solve this problem algorithm were found, which either enable exact or approximated inference on Markov networks.
 
-A simple algorithm for exact inference is variable elimination, which is in the following represented as one example of inference algorithms in Markov networks. As described above, in order to compute joint distribution all involved factors have to be multiplied and accordingly summed out. In equation \ref{eq:fullsum} the formula for computing the unnormalized distribution $\widetilde{P}(D)$ with respect to the graph, which was presented in figure \ref{fig:basic}, is shown. Equation \ref{eq:rightsum} shows how the sum for $B$ is moved to the right and isolated all factors, which include the variable $B$. Based on this step the new factor $\tau_1(A,C)$ can be computed by applying the factor product and summing out $B$. Thus, the variable $B$ is eliminated from the calculation and replaced by the intermediate result $\tau_1(A,C)$, as can be seen in equation \ref{eq:reducedsum}. In the next steps also $A$ and $C$ are eliminated, so that the result is as in equation \ref{eq:endsum}. The resulting $\widetilde{P}(D)$ is proportional to $P(D)$ and can be mapped onto $P(D)$ by normalizing the score, as was described in section \ref{sec:param}.
+A simple algorithm for exact inference is variable elimination, which is in the following represented as one example of inference algorithms in Markov networks. As described above, in order to compute joint distribution all involved factors have to be multiplied and accordingly summed out. Equation \ref{eq:fullsum} shows the formula for computing the unnormalized distribution $\widetilde{P}(D)$ with respect to the graph, which was presented earlier in figure \ref{fig:basic} (2). Equation \ref{eq:rightsum} shows how the sum for $B$ is moved to the right and isolated all factors, which include the variable $B$. Based on this step the new factor $\tau_1(A,C)$ can be computed by applying the factor product and summing out $B$. Thus, the variable $B$ is eliminated from the calculation and replaced by the intermediate result $\tau_1(A,C)$, as can be seen in equation \ref{eq:reducedsum}. In the next steps also $A$ and $C$ are eliminated, so that the result is as in equation \ref{eq:endsum}. The resulting $\widetilde{P}(D)$ is proportional to $P(D)$ and can be mapped onto $P(D)$ by normalizing the score, as was described in section \ref{sec:param}.
 
 \begin{equation}
 \widetilde{P}(D)=\sum_A{\sum_B{\sum_C{\phi_1(A,B)\times\phi_2(B,C)\times\phi_3(C,D)\times\phi_4(A,D)}}}
@@ -138,20 +136,21 @@ A simple algorithm for exact inference is variable elimination, which is in the 
 \end{equation}
 
 
-Still the computation costs can be very high for exact inference, if the network is very large. In order to achieve viable computation times, approximation methods are used. Amongst them are for example the direct sampling or the Markov Chain Monte Carlo sampling. %TODO: cite sources (Short description)
+Still the computation costs can be very high for exact inference, if the network is very large. In order to achieve viable computation times, approximation methods are used. Amongst them are for example the direct sampling or the Markov Chain Monte Carlo sampling. 
+%TODO: cite sources (Short description)
 
-\subsection{Learning undirected models}
+%\subsection{Learning undirected models}
 % 1 page
 
-\subsubsection{Motivation and Goals for learning probabilistic models}
+%\subsubsection{Motivation and Goals for learning probabilistic models}
 % 0.5 pages
-- [chapter 16]
-- predictions, estimations
+%- [chapter 16]
+%- predictions, estimations
 
-\subsubsection{Likelihood function for learning}
+%\subsubsection{Likelihood function for learning}
 % 0.5 pages
 
-- what is it
-- what methods, how does this satisfy the goals
-- specialty in comparison with Bayesian network
-- outlook
+%- what is it
+%- what methods, how does this satisfy the goals
+%- specialty in comparison with Bayesian network
+%- outlook
