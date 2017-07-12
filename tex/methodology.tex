@@ -76,10 +76,14 @@ Besides the number of parameters the factor multiplication delivers also unnorma
   \label{fig:parammult}
 \end{figure}
 
-% TODO Parameterization revisited: log-linear models
-% TODO clique potentials
-- clique potentials are often replaced by an exponentiated sum of features times their weights in log linear models
-- this features are used in Markov logic networks, as discussed in section \ref{sec:mln}
+In many applications alternative representations of factors are used to emphasize other aspects of the preferences among the values of variables. % TODO reference example sources
+One alternative representation are log-linear models, which are for example used in Markov logic networks, as it is referred to in section \ref{sec:mln}. In log-linear models a factor is rewritten as $\phi(\mathbf{D}) = exp(-\epsilon(\mathbf{D}))$, where $\epsilon(\mathbf{D})=-ln\phi(\mathbf{D})$ is called the energy function. In general, a features is like a factor a function from $Val(\mathbf{D})$ to ${\rm I\!R}$. A special feature type is the indicator feature, which is often used to emphasize a certain value combination. If for example two variable $A_1$ and $A_2$ have the same set of values and the goal is to emphasize the assignment, in which both variables resolves in the same value, $\epsilon(A_1,A_2)$ can for those cases result in \textit{minus one} and otherwise in \textit{zero}. More in general the energy function is split into a product of a weight $w$ and the feature $f(\mathbf{D})$. This results in the representation of the unnormalized distribution shown in equation \ref{eq:loglin}. In contrast to the factor representation, the logarithmic representation might include multiple factors over the same set of variables. Especially in cases where the variables have large number of values, like when representing texts, the representation with indicator features can be beneficial. This property was for example utilized by Metzler and Croft to model term dependences in the context of information retrieval \cite{metzler2005markov}, which is further discussed in section \ref{sec:term}.
+
+\begin{equation}
+\widetilde{P}(D)=exp\left[-\sum_{i=k}^k{w_i f_i(\mathbf{D}_i)}\right]
+\label{eq:loglin}
+\end{equation}
+
 
 \subsection{Independences in Markov networks} \label{sec:indep}
 % 0.5 page
